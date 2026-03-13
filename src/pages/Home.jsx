@@ -246,10 +246,7 @@ function Hero() {
         {/* Content — shrinks + rises + velocity-skews on scroll */}
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 20px', maxWidth: 920, transform: `scale(${1 - Math.max(0, prog - 0.65) * 0.2}) translateY(${Math.max(0, prog - 0.65) * -100}px)`, opacity: Math.max(0, 1 - Math.max(0, prog - 0.6) * 4), willChange: 'transform,opacity', transition: 'none' }}>
 
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 20px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 999, fontSize: '0.74rem', fontWeight: 600, color: 'rgba(255,255,255,0.65)', marginBottom: 36, backdropFilter: 'blur(10px)', animation: 'hIn 0.9s 0.1s both' }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 12px #4ade80', display: 'inline-block', animation: 'gPulse 2s ease-in-out infinite' }} />
-            Full Stack &amp; Game Development Studio
-          </div>
+          
 
           {/* Typewriter headline */}
           <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3.4rem,9.5vw,7.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.0, letterSpacing: '-0.04em', marginBottom: 28, minHeight: '2.1em' }}>

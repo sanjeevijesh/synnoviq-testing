@@ -18,6 +18,8 @@ import Announcements from './pages/Announcements';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import CertificateVerification from './pages/CertificateVerification';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 const Placeholder = ({ title }) => (
   <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 68 }}>
@@ -48,8 +50,8 @@ export default function App() {
           <Route path="/contact"                  element={<Contact />}                 />
           <Route path="/certificate-verification" element={<CertificateVerification />} />
           <Route path="/login"                    element={<Placeholder title="Login" />} />
-          <Route path="/privacy-policy"           element={<Placeholder title="Privacy Policy" />} />
-          <Route path="/terms-of-service"         element={<Placeholder title="Terms of Service" />} />
+          <Route path="/privacy-policy"           element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service"         element={<TermsOfService />} />
           <Route path="*"                         element={<Placeholder title="404 — Not Found" />} />
         </Routes>
       </div>

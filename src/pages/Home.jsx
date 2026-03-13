@@ -189,7 +189,7 @@ const STATS = [
   { end: 50,  suf: '+', label: 'Projects',     sub: 'Delivered globally'  },
   { end: 15,  suf: '+', label: 'Technologies', sub: 'Mastered & deployed'  },
   { end: 100, suf: '%', label: 'Satisfaction', sub: 'Every single client'  },
-  { end: 1,   suf: '+', label: 'Years',        sub: 'Of excellence'        },
+  { end: 3,   suf: '+', label: 'Years',        sub: 'Of excellence'        },
 ];
 const PROCESS = [
   { n: '01', Icon: Sparkles, t: 'Discovery',    d: 'Deep-diving into your goals, market, and users to forge a razor-sharp product vision.' },
@@ -246,7 +246,11 @@ function Hero() {
         {/* Content — shrinks + rises + velocity-skews on scroll */}
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 20px', maxWidth: 920, transform: `scale(${1 - Math.max(0, prog - 0.65) * 0.2}) translateY(${Math.max(0, prog - 0.65) * -100}px)`, opacity: Math.max(0, 1 - Math.max(0, prog - 0.6) * 4), willChange: 'transform,opacity', transition: 'none' }}>
 
-          
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 20px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 999, fontSize: '0.74rem', fontWeight: 600, color: 'rgba(255,255,255,0.65)', marginBottom: 36, backdropFilter: 'blur(10px)', animation: 'hIn 0.9s 0.1s both' }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 12px #4ade80', display: 'inline-block', animation: 'gPulse 2s ease-in-out infinite' }} />
+            Full Stack &amp; Game Development Studio
+          </div>
+
           {/* Typewriter headline */}
           <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3.4rem,9.5vw,7.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.0, letterSpacing: '-0.04em', marginBottom: 28, minHeight: '2.1em' }}>
             <span style={{ display: 'block' }}>{typed.split('\u00a0')[0]}</span>
@@ -557,9 +561,11 @@ function ProcessSection() {
   const activeColor = stepColors[activeIdx % stepColors.length];
   const activeRgb = ['0,87,255', '124,58,237', '219,39,119', '5,150,105', '245,158,11'][activeIdx % 5];
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   return (
-    <div ref={wrapRef} id="sec-process" style={{ height: `${100 + PROCESS.length * 80}vh`, position: 'relative' }}>
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', background: '#04080f' }}>
+    <div ref={wrapRef} id="sec-process" style={{ height: isMobile ? 'auto' : `${100 + PROCESS.length * 80}vh`, position: 'relative' }}>
+      <div className="process-sticky" style={{ position: isMobile ? 'relative' : 'sticky', top: 0, height: isMobile ? 'auto' : '100vh', overflow: isMobile ? 'visible' : 'hidden', display: 'flex', flexDirection: isMobile ? 'column' : 'row', background: '#04080f' }}>
 
         {/* Background photo — very faint */}
         <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=60" alt="" aria-hidden style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.055, filter: 'saturate(0.3)' }} />
@@ -567,14 +573,56 @@ function ProcessSection() {
         {/* Vignette */}
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(4,8,15,0.85) 100%)', pointerEvents: 'none' }} />
 
-        {/* Ambient colour glow shifts with active step */}
+        {/* Ambient colour glow */}
         <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at 72% 48%, rgba(${activeRgb},0.11) 0%, transparent 55%)`, transition: 'background 0.7s ease', pointerEvents: 'none' }} />
 
         {/* Dot grid */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)', backgroundSize: '36px 36px', pointerEvents: 'none', opacity: 0.5 }} />
 
-        {/* ── LEFT — step list ── */}
-        <div style={{ width: 'clamp(240px,36%,400px)', padding: '0 clamp(16px,3vw,48px) 0 clamp(20px,4vw,56px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.06)', flexShrink: 0, position: 'relative' }}>
+        {/* ── MOBILE LAYOUT ── */}
+        <div className="process-mobile-layout" style={{ display: 'none', flexDirection: 'column', position: 'relative', zIndex: 1, padding: '60px 20px 48px' }}>
+
+          {/* Header */}
+          <div style={{ marginBottom: 32, textAlign: 'center' }}>
+            <span style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'block', marginBottom: 8 }}>How We Work</span>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(2rem,8vw,2.8rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.028em', lineHeight: 1.08 }}>Our Proven<br /><em style={{ fontStyle: 'italic', color: '#0057ff' }}>Process</em></h2>
+          </div>
+
+          {/* Step cards — stacked vertically */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {PROCESS.map(({ n, Icon, t, d }, i) => {
+              const col = stepColors[i % stepColors.length];
+              const rgb = ['0,87,255','124,58,237','219,39,119','5,150,105','245,158,11'][i % 5];
+              return (
+                <div key={n} style={{
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.02) 100%)',
+                  backdropFilter: 'blur(16px)',
+                  border: `1px solid rgba(${rgb},0.25)`,
+                  borderTop: `2px solid ${col}`,
+                  borderRadius: 18, padding: '22px 20px',
+                  position: 'relative', overflow: 'hidden',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                    <div style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `rgba(${rgb},0.18)`, border: `1px solid rgba(${rgb},0.4)`, color: col, boxShadow: `0 4px 16px rgba(${rgb},0.3)` }}>
+                      <Icon size={18} />
+                    </div>
+                    <div>
+                      <span style={{ fontSize: '0.56rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: col, display: 'block', marginBottom: 2 }}>Step {n}</span>
+                      <strong style={{ fontSize: '1rem', color: '#fff', fontWeight: 700, fontFamily: 'var(--serif)' }}>{t}</strong>
+                    </div>
+                  </div>
+                  <div style={{ height: 1, background: `linear-gradient(to right, rgba(${rgb},0.4), transparent)`, marginBottom: 14 }} />
+                  <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.78, margin: 0 }}>{d}</p>
+                  {/* Faint watermark number */}
+                  <div style={{ position: 'absolute', bottom: -8, right: 12, fontFamily: 'var(--serif)', fontSize: '5rem', fontWeight: 900, color: `rgba(${rgb},0.07)`, lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>{n}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── DESKTOP: LEFT — step list ── */}
+        <div className="process-desktop-left" style={{ width: 'clamp(240px,36%,400px)', padding: '0 clamp(16px,3vw,48px) 0 clamp(20px,4vw,56px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.06)', flexShrink: 0, position: 'relative' }}>
 
           {/* Vertical progress rail */}
           <div style={{ position: 'absolute', left: 'clamp(20px,4vw,56px)', top: '50%', transform: 'translateY(-50%)', width: 2, height: `${PROCESS.length * 56}px`, background: 'rgba(255,255,255,0.06)', borderRadius: 1, overflow: 'hidden' }}>
@@ -613,10 +661,9 @@ function ProcessSection() {
           })}
         </div>
 
-        {/* ── RIGHT — detail card ── */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(24px,4vw,60px)', position: 'relative', overflow: 'hidden' }}>
+        {/* ── DESKTOP: RIGHT — detail card ── */}
+        <div className="process-desktop-right" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(24px,4vw,60px)', position: 'relative', overflow: 'hidden' }}>
 
-          {/* Radial glow behind card */}
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 480, height: 480, borderRadius: '50%', background: `radial-gradient(circle, rgba(${activeRgb},0.09) 0%, transparent 70%)`, transition: 'background 0.7s ease', pointerEvents: 'none' }} />
 
           <Tilt style={{ width: '100%', maxWidth: 520, position: 'relative', zIndex: 1 }}>
@@ -634,7 +681,6 @@ function ProcessSection() {
                 const { n, Icon, t, d } = PROCESS[activeIdx];
                 return (
                   <>
-                    {/* Card header */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
                       <div style={{ width: 58, height: 58, borderRadius: 16, background: `rgba(${activeRgb},0.18)`, border: `1px solid rgba(${activeRgb},0.4)`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: activeColor, boxShadow: `0 6px 24px rgba(${activeRgb},0.3)`, flexShrink: 0, transition: 'all 0.6s ease' }}>
                         <Icon size={24} />
@@ -644,26 +690,17 @@ function ProcessSection() {
                         <h3 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.5rem,3vw,2.1rem)', fontWeight: 900, color: '#fff', lineHeight: 1.08 }}>{t}</h3>
                       </div>
                     </div>
-
-                    {/* Accent divider */}
                     <div style={{ height: 1, background: `linear-gradient(to right, rgba(${activeRgb},0.5), transparent)`, marginBottom: 24, transition: 'background 0.5s ease' }} />
-
                     <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.58)', lineHeight: 1.92, marginBottom: 32 }}>{d}</p>
-
-                    {/* Step fill bar */}
                     <div style={{ height: 3, background: 'rgba(255,255,255,0.08)', borderRadius: 2, overflow: 'hidden', marginBottom: 20 }}>
                       <div style={{ height: '100%', width: `${subProg * 100}%`, background: `linear-gradient(to right, ${activeColor}, rgba(${activeRgb},0.5))`, borderRadius: 2, transition: 'none', boxShadow: `0 0 10px rgba(${activeRgb},0.6)` }} />
                     </div>
-
-                    {/* Step dots */}
                     <div style={{ display: 'flex', gap: 6 }}>
                       {PROCESS.map((_, pi) => {
                         const pc = stepColors[pi % stepColors.length];
                         return <div key={pi} style={{ height: 4, borderRadius: 2, background: pi === activeIdx ? pc : 'rgba(255,255,255,0.1)', width: pi === activeIdx ? 28 : 8, transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)', boxShadow: pi === activeIdx ? `0 0 6px ${pc}` : 'none' }} />;
                       })}
                     </div>
-
-                    {/* Big faint step number watermark */}
                     <div style={{ position: 'absolute', bottom: -12, right: 16, fontFamily: 'var(--serif)', fontSize: '7rem', fontWeight: 900, color: `rgba(${activeRgb},0.06)`, lineHeight: 1, pointerEvents: 'none', userSelect: 'none', transition: 'color 0.6s ease' }}>{n}</div>
                   </>
                 );
@@ -677,6 +714,15 @@ function ProcessSection() {
           <div style={{ height: '100%', width: `${prog * 100}%`, background: `linear-gradient(to right, ${activeColor}, rgba(${activeRgb},0.4))`, transition: 'none', boxShadow: `0 0 10px rgba(${activeRgb},0.7)` }} />
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .process-sticky       { min-height: 100vh !important; }
+          .process-mobile-layout { display: flex !important; }
+          .process-desktop-left  { display: none !important; }
+          .process-desktop-right { display: none !important; }
+        }
+      `}</style>
     </div>
   );
 }

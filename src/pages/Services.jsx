@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Globe, Gamepad2, Palette, Monitor, Smartphone, Chrome, Tv2 } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 /* ═══════════════════════════════════════════════════
    DATA
@@ -403,9 +404,9 @@ function RotatingRing({ color, text = 'FULL STACK · GAME DEV · UI/UX · WEB AP
     return () => cancelAnimationFrame(raf.current);
   }, []);
   const chars = text.split('');
-  const radius = 72;
+  const radius = 80;
   return (
-    <div style={{ width: 180, height: 180, position: 'relative', flexShrink: 0 }}>
+    <div style={{ width: 210, height: 210, position: 'relative', flexShrink: 0 }}>
       <svg viewBox="0 0 180 180" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
         {chars.map((ch, i) => {
           const a = (i / chars.length) * 360 + angle;
@@ -421,8 +422,10 @@ function RotatingRing({ color, text = 'FULL STACK · GAME DEV · UI/UX · WEB AP
             </text>
           );
         })}
-        <circle cx="90" cy="90" r="28" fill={color} />
-        <text x="90" y="93" textAnchor="middle" dominantBaseline="middle" style={{ fontSize: 11, fontWeight: 900, fill: '#fff', fontFamily: 'var(--serif)' }}>SYN</text>
+        {/* White circle background behind logo */}
+        <circle cx="90" cy="90" r="30" fill="rgba(255,255,255,0.08)" />
+        <circle cx="90" cy="90" r="30" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.4" />
+        <image href={logo} x="62" y="62" width="56" height="56" style={{ borderRadius: 28 }} clipPath="circle(28px at 28px 28px)" />
       </svg>
     </div>
   );
@@ -476,7 +479,7 @@ export default function Services() {
   }, []);
 
   return (
-    <div style={{ background: '#040b18' }}>
+    <div style={{ background: '#040b18', marginTop: '-68px' }}>
 
       {/* Particle cursor trail */}
       <CursorTrail color={cursorColor} />
@@ -501,7 +504,7 @@ export default function Services() {
         {/* Glow orb */}
         <div style={{ position: 'absolute', top: '30%', left: '55%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(0,87,255,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
-        <div className="wrap" style={{ position: 'relative', zIndex: 1, padding: '130px 20px 100px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
+        <div className="wrap" style={{ position: 'relative', zIndex: 1, padding: '198px 20px 100px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
 
           {/* Left: text */}
           <div style={{ maxWidth: 640 }}>

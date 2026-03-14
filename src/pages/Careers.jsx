@@ -136,12 +136,11 @@ function Hero() {
   const wRef = useRef(null);
   const prog = useScrollProg(wRef);
   const imgTy    = prog * 60;
-  const textFade = Math.max(0.12, 1 - prog * 3.5);
-  const cardsP   = Math.max(0, (prog - 0.3) / 0.7);
-  const cardsE   = 1 - Math.pow(1 - Math.min(1, cardsP), 3);
+  const textFade = Math.max(0.15, 1 - prog * 1.2); // fades gently, never disappears early
+  const cardsE   = 1 - Math.pow(1 - Math.min(1, prog * 4), 3); // cards animate in immediately on scroll
 
   return (
-    <div ref={wRef} style={{height:'130vh',position:'relative'}}>
+    <div ref={wRef} style={{height:'180vh',position:'relative'}}>
       <section style={{position:'sticky',top:0,height:'100vh',overflow:'hidden',background:'#020810'}}>
 
         {/* BG */}
@@ -207,11 +206,7 @@ function Hero() {
           <div style={{textAlign:'center',marginTop:4,fontSize:'.56rem',fontWeight:700,letterSpacing:'.14em',textTransform:'uppercase',color:'rgba(255,255,255,.18)',opacity:cardsE}}>8 departments · 16 open roles</div>
         </div>
 
-        {/* Scroll hint */}
-        <div style={{position:'absolute',bottom:24,left:'50%',transform:'translateX(-50%)',display:'flex',flexDirection:'column',alignItems:'center',gap:5,opacity:Math.max(0,1-prog*8),transition:'none'}}>
-          <div style={{width:1,height:36,background:'linear-gradient(to bottom,transparent,rgba(255,255,255,.3))',animation:'lineP 2s ease-in-out infinite'}}/>
-          <span style={{fontSize:'.5rem',letterSpacing:'.2em',textTransform:'uppercase',color:'rgba(255,255,255,.2)'}}>scroll</span>
-        </div>
+
 
         <div style={{position:'absolute',bottom:0,left:0,right:0,height:120,background:'linear-gradient(to bottom,transparent,#020810)',pointerEvents:'none'}}/>
       </section>
@@ -225,7 +220,7 @@ function StatCard({val,suffix='',label,i}) {
   const count=useCounter(val,vis);
   return (
     <div ref={ref} style={{textAlign:'center',opacity:vis?1:0,transform:vis?'none':'translateY(24px)',transition:`opacity .6s ${i*.1}s ease,transform .6s ${i*.1}s ease`}}>
-      <div style={{fontFamily:'var(--serif)',fontSize:'clamp(2rem,5vw,3.8rem)',fontWeight:900,color:'#fff',letterSpacing:'-.05em',lineHeight:1}}>{count}{suffix}</div>
+      <div style={{fontFamily:"'Bebas Neue','Oswald',var(--serif)",fontSize:'clamp(2rem,5vw,3.8rem)',fontWeight:900,color:'#fff',letterSpacing:'.02em',lineHeight:1}}>{count}{suffix}</div>
       <div style={{fontSize:'clamp(.54rem,.8vw,.6rem)',fontWeight:700,letterSpacing:'.16em',textTransform:'uppercase',color:'rgba(255,255,255,.32)',marginTop:8}}>{label}</div>
     </div>
   );
@@ -249,8 +244,7 @@ function Stats() {
 const WHY_PANELS = [
   {num:'01',headline:'Real work,\nnot busywork.',body:'You ship to real users from your first sprint. No fake projects, no tutorial assignments — your code goes into production.',img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',col:'#0057ff',rgb:'0,87,255'},
   {num:'02',headline:'Senior-led\nmentorship.',body:'Weekly 1:1s with senior engineers. Structured, scheduled, and intentional — not accidental corridor conversations.',img:'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80',col:'#7c3aed',rgb:'124,58,237'},
-  {num:'03',headline:'Fully remote\nfriendly.',body:'Work from anywhere in the world. We care about output, not hours at a desk. Async-first culture with regular sync rituals.',img:'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&q=80',col:'#db2777',rgb:'219,39,119'},
-  {num:'04',headline:'Clear growth\npathways.',body:'Defined tracks from intern to senior. You know exactly what it takes to level up — no politics, no guessing.',img:'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',col:'#059669',rgb:'5,150,105'},
+  {num:'03',headline:'Clear growth\npathways.',body:'Defined tracks from intern to senior. You know exactly what it takes to level up — no politics, no guessing.',img:'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',col:'#059669',rgb:'5,150,105'},
 ];
 
 function WhyJoinMobile() {
@@ -294,8 +288,9 @@ function WhyJoinDesktop() {
   const rawIdx = prog * pCount;
   const idx  = Math.min(pCount-1, Math.floor(rawIdx));
   const intra = rawIdx - idx;
-  const wipeE = 1 - Math.pow(1-Math.min(1,intra/0.4),2);
-  const tE    = 1 - Math.pow(1-Math.min(1,intra/0.55),3);
+  const intraAdj = Math.max(0.3, intra); // never starts at 0 — prevents blank panel
+  const wipeE = 1 - Math.pow(1-Math.min(1,intraAdj/0.4),2);
+  const tE    = 1 - Math.pow(1-Math.min(1,intraAdj/0.55),3);
   const d = WHY_PANELS[idx];
 
   return (
@@ -580,6 +575,7 @@ export default function Careers() {
       <CTA/>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
         @keyframes cUp    { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
         @keyframes tickL  { from{transform:translateX(0)} to{transform:translateX(-33.33%)} }
         @keyframes lineP  { 0%,100%{opacity:.28} 50%{opacity:.65} }

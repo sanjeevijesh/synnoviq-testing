@@ -338,7 +338,7 @@ function Hero() {
           <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(3.2rem,9vw,8.5rem)',fontWeight:900,color:'#fff',letterSpacing:'-.055em',lineHeight:.88,margin:0,animation:'slideUp .75s .1s both'}}>Tech</h1>
         </div>
         <div style={{overflow:'hidden',marginBottom:6}}>
-          <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(3.2rem,9vw,8.5rem)',fontWeight:900,letterSpacing:'-.055em',lineHeight:.88,margin:0,animation:'slideUp .75s .18s both',background:'linear-gradient(90deg,#4d9fff,#a78bfa,#f472b6)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Insights</h1>
+          <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(3.2rem,9vw,8.5rem)',fontWeight:900,letterSpacing:'-.055em',lineHeight:1.19,margin:0,animation:'slideUp .75s .18s both',background:'linear-gradient(90deg,#4d9fff,#a78bfa,#f472b6)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Insights</h1>
         </div>
         <div style={{overflow:'hidden',marginBottom:36}}>
           <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(3.2rem,9vw,8.5rem)',fontWeight:900,letterSpacing:'-.055em',lineHeight:.88,margin:0,animation:'slideUp .75s .26s both',WebkitTextStroke:'1px rgba(255,255,255,.2)',color:'transparent'}}>&amp; Stories.</h1>

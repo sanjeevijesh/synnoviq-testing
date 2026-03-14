@@ -14,7 +14,7 @@ const PERKS = [
 const STATS = [
   { val:50,  suffix:'+',    label:'Projects shipped' },
   { val:8,   suffix:'',     label:'Departments hiring' },
-  { val:3,   suffix:' mon',  label:'Internship duration' },
+  { val:6,   suffix:' months',  label:'Internship duration' },
   { val:100, suffix:'%',    label:'Remote-friendly' },
 ];
 

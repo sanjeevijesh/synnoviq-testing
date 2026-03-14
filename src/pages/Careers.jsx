@@ -15,7 +15,7 @@ const STATS = [
   { val:50,  suffix:'+',    label:'Projects shipped' },
   { val:8,   suffix:'',     label:'Departments hiring' },
   { val:6,   suffix:' months',  label:'Internship duration' },
-  { val:100, suffix:'%',    label:'Satisfaction' },
+  { val:100, suffix:'%',    label:'Career Growth' },
 ];
 
 const DEPT_ICONS = { 'Full Stack':Code,'Game Dev':Zap,'UI/UX':Palette,'Data':BarChart2,'Security':Shield,'Mobile':Smartphone,'IoT':Cpu,'DevOps':Terminal };

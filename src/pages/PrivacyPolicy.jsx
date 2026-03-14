@@ -115,7 +115,7 @@ function Hero() {
         <div style={{marginBottom:28}}>
           {['Privacy','Policy.'].map((word,i)=>(
             <div key={i} style={{overflow:'hidden'}}>
-              <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(3rem,10vw,9rem)',fontWeight:900,lineHeight:.9,letterSpacing:'-.055em',margin:0,animation:`ppUp .8s ${.06+i*.1}s both`,
+              <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(3rem,10vw,9rem)',fontWeight:900,lineHeight:1.20,letterSpacing:'-.055em',margin:0,animation:`ppUp .8s ${.06+i*.1}s both`,
                 ...(i===0?{color:'#fff'}:{color:'transparent',WebkitTextStroke:'1px rgba(255,255,255,.18)'})
               }}>{word}</h1>
             </div>

@@ -78,11 +78,10 @@ function Hero() {
         <div style={{marginBottom:32}}>
           {["Let's Build","Something","Together."].map((line,i)=>(
             <div key={i} style={{overflow:'hidden'}}>
-              <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(2.6rem,9vw,9rem)',fontWeight:900,lineHeight:.9,letterSpacing:'-.05em',margin:0,animation:`slideUp .75s ${.08+i*.1}s both`,color:i===1?'transparent':i===2?'rgba(255,255,255,.15)':'#fff',background:i===1?'linear-gradient(90deg,#4d9fff,#a78bfa,#f472b6)':'none',WebkitBackgroundClip:i===1?'text':'unset',WebkitTextFillColor:i===1?'transparent':'unset',WebkitTextStroke:i===2?'1px rgba(255,255,255,.18)':'0'}}>{line}</h1>
+              <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(2.6rem,9vw,9rem)',fontWeight:900,lineHeight:1.19,letterSpacing:'-.05em',margin:0,animation:`slideUp .75s ${.08+i*.1}s both`,color:i===1?'transparent':i===2?'rgba(255,255,255,.15)':'#fff',background:i===1?'linear-gradient(90deg,#4d9fff,#a78bfa,#f472b6)':'none',WebkitBackgroundClip:i===1?'text':'unset',WebkitTextFillColor:i===1?'transparent':'unset',WebkitTextStroke:i===2?'1px rgba(255,255,255,.18)':'0'}}>{line}</h1>
             </div>
           ))}
         </div>
-
         <div style={{display:'flex',flexDirection:'column',gap:24,animation:'slideUp .7s .4s both'}}>
           <p style={{fontSize:'clamp(.88rem,2vw,1.05rem)',color:'rgba(255,255,255,.4)',lineHeight:1.9,maxWidth:440,margin:0}}>
             Have a project in mind? We're a full stack &amp; game development studio — drop us a message and we'll get back within one business day.

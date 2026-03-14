@@ -167,7 +167,7 @@ function Hero() {
             {['Build','Meaningful','Things.'].map((word,i)=>(
               <div key={i} style={{overflow:'visible'}}>
                 <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(2.8rem,9vw,8rem)',fontWeight:900,letterSpacing:'-.055em',lineHeight:.9,margin:0,animation:`cUp .8s ${.08+i*.1}s both`,
-                  ...(i===1?{background:'linear-gradient(90deg,#4d9fff,#a78bfa)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}
+                  ...(i===1?{background:'linear-gradient(90deg,#4d9fff,#a78bfa)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text',paddingBottom: '0.05em',lineHeight: 1.5}
                     :i===2?{color:'transparent',WebkitTextStroke:'1px rgba(255,255,255,.18)'}
                     :{color:'#fff'})
                 }}>{word}</h1>

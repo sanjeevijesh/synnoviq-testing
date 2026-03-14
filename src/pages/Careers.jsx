@@ -163,9 +163,9 @@ function Hero() {
             <span style={{fontSize:'clamp(.52rem,.8vw,.6rem)',fontWeight:700,color:'rgba(0,87,255,.8)'}}>16 Open Roles</span>
           </div>
 
-          <div style={{marginBottom:24}}>
+          <div style={{marginBottom:24, paddingBottom:8}}>
             {['Build','Meaningful','Things.'].map((word,i)=>(
-              <div key={i} style={{overflow:'hidden'}}>
+              <div key={i} style={{overflow:'visible'}}>
                 <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(2.8rem,9vw,8rem)',fontWeight:900,letterSpacing:'-.055em',lineHeight:.9,margin:0,animation:`cUp .8s ${.08+i*.1}s both`,
                   ...(i===1?{background:'linear-gradient(90deg,#4d9fff,#a78bfa)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}
                     :i===2?{color:'transparent',WebkitTextStroke:'1px rgba(255,255,255,.18)'}

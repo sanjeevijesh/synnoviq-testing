@@ -35,36 +35,6 @@ function Grain() {
   return <div style={{ position: 'fixed', inset: 0, zIndex: 9995, pointerEvents: 'none', opacity: 0.028, backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: '160px' }} />;
 }
 
-function Cursor() {
-  const ring = useRef(null); const dot = useRef(null);
-  const lag  = useRef({ x: -300, y: -300 }); const real = useRef({ x: -300, y: -300 });
-  const [color, setColor] = useState('0,87,255');
-  useEffect(() => {
-    const onMove = e => { real.current = { x: e.clientX, y: e.clientY }; };
-    window.addEventListener('mousemove', onMove);
-    let raf;
-    const tick = () => {
-      lag.current.x += (real.current.x - lag.current.x) * 0.1;
-      lag.current.y += (real.current.y - lag.current.y) * 0.1;
-      if (ring.current) { ring.current.style.left = lag.current.x + 'px'; ring.current.style.top = lag.current.y + 'px'; }
-      if (dot.current)  { dot.current.style.left  = real.current.x + 'px'; dot.current.style.top  = real.current.y  + 'px'; }
-      raf = requestAnimationFrame(tick);
-    };
-    tick();
-    const sections = [{ id: 'sec-svc', color: '0,87,255' }, { id: 'sec-process', color: '124,58,237' }, { id: 'sec-work', color: '219,39,119' }];
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { const s = sections.find(s => s.id === e.target.id); if (s) setColor(s.color); } });
-    }, { threshold: 0.3 });
-    sections.forEach(s => { const el = document.getElementById(s.id); if (el) io.observe(el); });
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('mousemove', onMove); io.disconnect(); };
-  }, []);
-  return (
-    <>
-      <div ref={ring} style={{ position: 'fixed', width: 36, height: 36, borderRadius: '50%', border: `1.5px solid rgba(${color},0.7)`, transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: 9999, mixBlendMode: 'difference', transition: 'border-color 0.4s, width 0.3s, height 0.3s' }} />
-      <div ref={dot}  style={{ position: 'fixed', width: 5, height: 5, borderRadius: '50%', background: '#fff', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: 9999, mixBlendMode: 'difference' }} />
-    </>
-  );
-}
 
 function ProgressBar() {
   const [p, setP] = useState(0);
@@ -259,7 +229,7 @@ function Hero() {
           opacity: Math.max(0.15, 1 - ep * 0.85),
           willChange: 'transform, opacity', transition: 'none',
         }}>
-          
+         
 
           <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3.4rem,9.5vw,7.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.0, letterSpacing: '-0.04em', marginBottom: 28, minHeight: '2.1em' }}>
             <span style={{ display: 'block' }}>{typed.split('\u00a0')[0]}</span>
@@ -315,7 +285,7 @@ function Ticker() {
       <div style={{ background: '#050d1e', padding: '28px 20px 16px', textAlign: 'center' }}>
         <span style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.025em', display: 'inline-flex', alignItems: 'center', gap: 14 }}>
           <span style={{ display: 'inline-block', width: 'clamp(28px,5vw,48px)', height: 2, background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.25))', borderRadius: 1 }} />
-          We <em style={{ fontStyle: 'italic', color: '#5aa8ff' }}>Expertise in</em>
+          We <em style={{ fontStyle: 'italic', color: '#5aa8ff' }}>Master</em>
           <span style={{ display: 'inline-block', width: 'clamp(28px,5vw,48px)', height: 2, background: 'linear-gradient(to left, transparent, rgba(255,255,255,0.25))', borderRadius: 1 }} />
         </span>
       </div>
@@ -769,9 +739,9 @@ function StackSection() {
         <div key={row} style={{ overflow: 'hidden', marginBottom: row === 0 ? 10 : 0 }}>
           <div style={{ display: 'flex', gap: 10, width: 'max-content', padding: '0 10px', animation: `${row === 0 ? 'tickL' : 'tickR'} ${row === 0 ? 22 : 30}s linear infinite` }}>
             {[...STACK, ...STACK, ...STACK, ...STACK].filter((_, i) => i % 2 === row).map((t, i) => (
-              <span key={i} style={{ padding: '10px 22px', borderRadius: 999, background: '#fff', border: '1px solid var(--rule)', fontSize: '0.83rem', fontWeight: 600, color: 'var(--ink60)', whiteSpace: 'nowrap', flexShrink: 0, cursor: 'default', transition: 'all 0.2s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#0057ff'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#0057ff'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 6px 18px rgba(0,87,255,0.3)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = 'var(--ink60)'; e.currentTarget.style.borderColor = 'var(--rule)'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
+              <span key={i} style={{ padding: '10px 22px', borderRadius: 999, background: '#fff', border: '1px solid var(--rule)', fontSize: '0.83rem', fontWeight: 600, color: 'var(--ink60)', whiteSpace: 'nowrap', flexShrink: 0 }}
+                onMouseEnter={e => {}}
+                onMouseLeave={e => {}}
               >{t}</span>
             ))}
           </div>
@@ -821,7 +791,6 @@ export default function Home() {
   return (
     <div style={{ marginTop: '-68px' }}>
       <Grain />
-      <Cursor />
       <ProgressBar />
       <Hero />
       <Ticker />

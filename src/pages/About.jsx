@@ -56,33 +56,6 @@ function Grain() {
   );
 }
 
-function MagCursor() {
-  const outer = useRef(null), dot = useRef(null);
-  const real = useRef({ x: -200, y: -200 }), lerped = useRef({ x: -200, y: -200 });
-  useEffect(() => {
-    const mv = e => { real.current = { x: e.clientX, y: e.clientY }; };
-    window.addEventListener('mousemove', mv);
-    let raf;
-    const tick = () => {
-      lerped.current.x += (real.current.x - lerped.current.x) * 0.09;
-      lerped.current.y += (real.current.y - lerped.current.y) * 0.09;
-      if (outer.current) { outer.current.style.left = lerped.current.x + 'px'; outer.current.style.top = lerped.current.y + 'px'; }
-      if (dot.current) { dot.current.style.left = real.current.x + 'px'; dot.current.style.top = real.current.y + 'px'; }
-      raf = requestAnimationFrame(tick);
-    };
-    tick();
-    const grow = () => { if (outer.current) { outer.current.style.width = '58px'; outer.current.style.height = '58px'; outer.current.style.borderColor = 'rgba(0,87,255,0.8)'; } };
-    const shrink = () => { if (outer.current) { outer.current.style.width = '28px'; outer.current.style.height = '28px'; outer.current.style.borderColor = 'rgba(0,87,255,0.5)'; } };
-    document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter', grow); el.addEventListener('mouseleave', shrink); });
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('mousemove', mv); };
-  }, []);
-  return (
-    <>
-      <div ref={outer} style={{ position: 'fixed', width: 28, height: 28, borderRadius: '50%', border: '1.5px solid rgba(0,87,255,0.5)', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: 9998, mixBlendMode: 'difference', transition: 'width .3s,height .3s,border-color .3s' }} />
-      <div ref={dot} style={{ position: 'fixed', width: 4, height: 4, borderRadius: '50%', background: '#fff', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: 9998, mixBlendMode: 'difference' }} />
-    </>
-  );
-}
 
 /* ────────────────────────────────────────────────────────
    CANVAS: AURORA MESH
@@ -292,10 +265,10 @@ const HERO_IMGS = [
   { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=85', label: 'Work'   },
 ];
 const HERO_PILLS = [
-  { icon: '⚡', text: 'Fast delivery cycles' },
-  { icon: '🎯', text: 'Product-first thinking' },
-  { icon: '🔒', text: 'Enterprise-grade security' },
-  { icon: '🌍', text: 'Remote-ready teams' },
+  { icon: '', text: 'Fast delivery cycles' },
+  { icon: '', text: 'Product-first thinking' },
+  { icon: '', text: 'Enterprise-grade security' },
+  { icon: '', text: 'Remote-ready teams' },
 ];
 
 // Clamp helper
@@ -305,15 +278,14 @@ function Hero() {
   const wRef = useRef(null);
   const prog = useScrollProg(wRef);
 
-  // Phase windows — all compressed
-  const imgP   = cl((prog - 0)    / 0.40, 0, 1); // images slam in
-  const statP  = cl((prog - 0.30) / 0.30, 0, 1); // stats rise
-  const shiftP = cl((prog - 0.58) / 0.30, 0, 1); // title shifts, CTA fades
+  // No scroll travel — images and stats animate in on load
+  const imgP   = 1;
+  const statP  = 1;
 
   const imgIdx = Math.min(HERO_IMGS.length - 1, Math.floor(imgP * HERO_IMGS.length));
 
   return (
-    <div ref={wRef} style={{ height: '180vh', position: 'relative' }}>
+    <div ref={wRef} style={{ height: '100vh', position: 'relative' }}>
       <section style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', background: '#020810' }}>
 
         {/* Aurora + stars */}
@@ -348,7 +320,7 @@ function Hero() {
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(2,8,16,.55)', opacity: 1 - imgP * 0.75, willChange: 'opacity', pointerEvents: 'none' }} />
 
         {/* ── MAIN CONTENT ── */}
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 clamp(28px,6vw,80px)' }}>
+        <div className="abt-hero-content" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 clamp(28px,6vw,80px)' }}>
 
           {/* Badge */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 999, fontSize: '.7rem', fontWeight: 600, color: 'rgba(255,255,255,.58)', marginBottom: 24, backdropFilter: 'blur(10px)', alignSelf: 'flex-start', animation: 'aIn .8s .05s both' }}>
@@ -358,7 +330,7 @@ function Hero() {
 
           {/* Headline — static, no shift */}
           <div style={{ marginBottom: 20 }}>
-            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3.4rem,9vw,9rem)', fontWeight: 900, color: '#fff', lineHeight: .92, letterSpacing: '-.055em', margin: 0 }}>
+            <h1 className="abt-hero-title" style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3.4rem,9vw,9rem)', fontWeight: 900, color: '#fff', lineHeight: .92, letterSpacing: '-.055em', margin: 0 }}>
               <span style={{ display: 'block', animation: 'aIn .7s .05s both' }}>
                 <GlitchText text="Synnoviq" style={{ color: '#5aa8ff', fontStyle: 'italic' }} />
               </span>
@@ -368,8 +340,8 @@ function Hero() {
             <div style={{ height: 2, marginTop: 16, background: 'linear-gradient(to right,#0057ff,#7c3aed,transparent)', transformOrigin: 'left', animation: 'rulerIn .9s .3s both', width: '50%' }} />
           </div>
 
-          {/* Tagline + CTAs — fades out as shiftP grows */}
-          <div style={{ opacity: 1 - shiftP * 2.2, transform: `translateY(${shiftP * 20}px) translateZ(0)`, willChange: 'opacity,transform', maxWidth: 480 }}>
+          {/* Tagline + CTAs — always visible */}
+          <div style={{ maxWidth: 480 }}>
             <p style={{ fontSize: 'clamp(.88rem,1.4vw,1rem)', color: 'rgba(255,255,255,.42)', lineHeight: 1.85, marginBottom: 28, animation: 'aIn .8s .4s both' }}>
               A forward-thinking studio crafting digital experiences through clean code, sharp design, and relentless ambition.
             </p>
@@ -379,17 +351,13 @@ function Hero() {
                 onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 5px 22px rgba(0,87,255,.48)'; }}>
                 Our Services <ArrowRight size={13} />
               </Link>
-              <Link to="/team" style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '11px 24px', borderRadius: 11, background: 'rgba(255,255,255,.07)', color: 'rgba(255,255,255,.82)', fontWeight: 700, fontSize: '.86rem', border: '1px solid rgba(255,255,255,.12)', backdropFilter: 'blur(8px)', transition: 'background .18s ease' }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.13)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.07)'}>
-                Meet the Team
-              </Link>
+
             </div>
           </div>
         </div>
 
         {/* ── PILLS ROW — rises from bottom as statP grows ── */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 clamp(28px,6vw,80px) 36px', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end', opacity: statP, transform: `translateY(${(1 - statP) * 52}px) translateZ(0)`, willChange: 'opacity,transform', pointerEvents: statP > 0.1 ? 'auto' : 'none' }}>
+        <div className="abt-hero-pills" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 clamp(28px,6vw,80px) 36px', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end', opacity: statP, transform: `translateY(${(1 - statP) * 52}px) translateZ(0)`, willChange: 'opacity,transform', pointerEvents: statP > 0.1 ? 'auto' : 'none' }}>
           {/* separator line draws across */}
           <div style={{ position: 'absolute', top: 0, left: 'clamp(28px,6vw,80px)', right: 'clamp(28px,6vw,80px)', height: 1, background: 'rgba(255,255,255,.1)', transformOrigin: 'left', transform: `scaleX(${statP}) translateZ(0)`, willChange: 'transform' }} />
           {HERO_PILLS.map(({ icon, text }, i) => {
@@ -403,13 +371,24 @@ function Hero() {
           })}
         </div>
 
-        {/* progress line */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 2, background: 'rgba(255,255,255,.04)' }}>
-          <div style={{ height: '100%', width: '100%', background: 'linear-gradient(to right,#0057ff,#7c3aed)', transformOrigin: 'left', transform: `scaleX(${prog}) translateZ(0)`, willChange: 'transform' }} />
-        </div>
+
 
       </section>
-      <style>{`@keyframes rulerIn{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}`}</style>
+      <style>{`
+        @keyframes rulerIn{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}
+        @media (max-width: 640px) {
+          .abt-hero-content {
+            padding: 0 22px !important;
+            justify-content: flex-start !important;
+            padding-top: 80px !important;
+          }
+          .abt-hero-title { font-size: clamp(2.6rem,14vw,4rem) !important; letter-spacing: -.03em !important; line-height: 1.0 !important; }
+          .abt-hero-pills { display: none !important; }
+          .abt-hero-img-strips { opacity: 0.55 !important; }
+          .abt-hero-badge { margin-bottom: 16px !important; }
+          .abt-hero-tagline { font-size: .88rem !important; margin-bottom: 20px !important; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -426,7 +405,7 @@ function Stats() {
           {STATS.map(({ end, suf, label, sub }, i) => (
             <Reveal key={label} delay={i * .09}>
               <div style={{ padding: '56px 24px', textAlign: 'center', borderRight: i % 2 === 0 ? '1px solid rgba(255,255,255,.06)' : 'none', borderBottom: i < 2 ? '1px solid rgba(255,255,255,.06)' : 'none' }}>
-                <div style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3rem,6.5vw,5rem)', fontWeight: 900, lineHeight: 1, marginBottom: 10, background: 'linear-gradient(135deg,#fff 20%,rgba(90,168,255,.65))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                <div style={{ fontFamily: "'Bebas Neue', 'Oswald', var(--serif)", fontSize: 'clamp(3rem,6.5vw,5rem)', fontWeight: 900, lineHeight: 1, marginBottom: 10, background: 'linear-gradient(135deg,#fff 20%,rgba(90,168,255,.65))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                   <Counter end={end} suffix={suf} />
                 </div>
                 <div style={{ fontSize: '.76rem', fontWeight: 700, color: 'rgba(255,255,255,.38)', letterSpacing: '.13em', textTransform: 'uppercase', marginBottom: 4 }}>{label}</div>
@@ -483,12 +462,16 @@ function WhoWeAre() {
   const idx    = Math.min(total - 1, Math.floor(rawIdx));
   const intra  = rawIdx - idx; // 0→1 within current panel
 
-  // Smooth enter for text (0→0.5 of intra window)
-  const tEnter = Math.min(1, intra / 0.5);
+  // For first panel always show fully; for others start at 0.3 so
+  // content is never invisible at the panel boundary
+  const intraAdj = idx === 0 ? Math.max(0.3, intra) : Math.max(0.3, intra);
+
+  // Smooth enter for text
+  const tEnter = Math.min(1, intraAdj / 0.5);
   const tE     = 1 - Math.pow(1 - tEnter, 3); // cubic ease-out
 
-  // Image wipe: clips from right on entry (0→0.35)
-  const wipe   = Math.min(1, intra / 0.35);
+  // Image wipe: start already partially revealed
+  const wipe   = Math.min(1, intraAdj / 0.35);
   const wipeE  = 1 - Math.pow(1 - wipe, 2);
 
   const d = WHO_DATA[idx];
@@ -881,46 +864,6 @@ function Philosophy() {
 /* ────────────────────────────────────────────────────────
    ⑦ TEAM CTA — parallax dark with aurora + scramble
 ──────────────────────────────────────────────────────── */
-function TeamCta() {
-  const ref = useRef(null);
-  const [ty, setTy] = useState(0);
-  const [vis, setVis] = useState(false);
-  const [ioRef, inView] = useInView(.2);
-  useEffect(() => {
-    if (inView) setVis(true);
-  }, [inView]);
-  useEffect(() => {
-    const fn = () => { if (!ref.current) return; const r = ref.current.getBoundingClientRect(); setTy((window.innerHeight - r.top) * .16); };
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
-  return (
-    <section ref={ref} style={{ position: 'relative', overflow: 'hidden', padding: '110px 0', background: '#020810', borderTop: '1px solid rgba(255,255,255,.05)' }}>
-      <Aurora colors={['#0057ff', '#7c3aed', '#db2777']} opacity={.65} />
-      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=75" alt="" aria-hidden style={{ position: 'absolute', inset: 0, width: '100%', height: '130%', objectFit: 'cover', opacity: .07, transform: `translateY(${ty}px) translateZ(0)`, willChange: 'transform', transition: 'none' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom,rgba(2,8,16,.88),rgba(2,8,16,.55),rgba(2,8,16,.88))' }} />
-      <div className="wrap" style={{ position: 'relative', zIndex: 1 }} ref={ioRef}>
-        <div className="cta-row" style={{ display: 'flex', gap: 44 }}>
-          <Reveal dir="left" style={{ maxWidth: 600 }}>
-            <p style={{ fontSize: '.65rem', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,.3)', marginBottom: 14 }}>Leadership</p>
-            <div style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(2rem,5vw,3.8rem)', fontWeight: 900, color: '#fff', letterSpacing: '-.035em', marginBottom: 18, lineHeight: 1.06 }}>
-              The Team Behind{' '}
-              <ScrambleText text="Synnoviq" trigger={vis} style={{ color: '#5aa8ff', fontStyle: 'italic' }} />
-            </div>
-            <p style={{ fontSize: '.97rem', color: 'rgba(255,255,255,.44)', lineHeight: 1.9 }}>Deep technical expertise fused with strategic vision. Hands-on engineers who set the standard for quality on every engagement.</p>
-          </Reveal>
-          <Reveal dir="right">
-            <Link to="/team" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '17px 36px', borderRadius: 14, background: '#fff', color: '#020810', fontSize: '.96rem', fontWeight: 800, boxShadow: '0 4px 28px rgba(255,255,255,.1)', transition: 'all .25s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#0057ff'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 14px 36px rgba(0,87,255,.55)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#020810'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 28px rgba(255,255,255,.1)'; }}>
-              Meet the Team <ArrowRight size={17} />
-            </Link>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ────────────────────────────────────────────────────────
    ROOT
@@ -930,15 +873,14 @@ export default function About() {
     <div style={{ marginTop: "-68px" }}>
       <Grain />
       <ProgressBar />
-      <MagCursor />
       <Hero />
       <Stats />
       <WhoWeAre />
       <MissionVision />
       <Values />
       <Philosophy />
-      <TeamCta />
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
         @keyframes aIn   { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
         @keyframes glow  { 0%,100%{box-shadow:0 0 6px #4ade80}50%{box-shadow:0 0 18px #4ade80,0 0 32px #4ade8055} }
         @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }

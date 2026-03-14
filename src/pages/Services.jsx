@@ -73,61 +73,6 @@ const SVCS = [
 /* ═══════════════════════════════════════════════════
    CANVAS PARTICLE CURSOR TRAIL
 ═══════════════════════════════════════════════════ */
-function CursorTrail({ color }) {
-  const canvasRef = useRef(null);
-  const particles = useRef([]);
-  const mouse     = useRef({ x: -999, y: -999 });
-  const raf       = useRef(null);
-  const colorRef  = useRef(color);
-  useEffect(() => { colorRef.current = color; }, [color]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx    = canvas.getContext('2d');
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const onMove = (e) => { mouse.current = { x: e.clientX, y: e.clientY }; };
-    window.addEventListener('mousemove', onMove);
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Spawn particle at mouse
-      if (mouse.current.x > 0) {
-        particles.current.push({
-          x: mouse.current.x + (Math.random() - 0.5) * 12,
-          y: mouse.current.y + (Math.random() - 0.5) * 12,
-          r: Math.random() * 5 + 2,
-          alpha: 0.7,
-          vx: (Math.random() - 0.5) * 1.2,
-          vy: (Math.random() - 0.5) * 1.2 - 0.5,
-          color: colorRef.current,
-        });
-      }
-      // Update & draw
-      particles.current = particles.current.filter(p => p.alpha > 0.01);
-      particles.current.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
-        p.r  *= 0.93;
-        p.alpha *= 0.88;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0, p.r), 0, Math.PI * 2);
-        ctx.fillStyle = p.color + Math.round(p.alpha * 255).toString(16).padStart(2, '0');
-        ctx.fill();
-      });
-      raf.current = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => {
-      cancelAnimationFrame(raf.current);
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMove);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999 }} />;
-}
 
 /* ═══════════════════════════════════════════════════
    3D TILT CARD
@@ -404,28 +349,28 @@ function RotatingRing({ color, text = 'FULL STACK · GAME DEV · UI/UX · WEB AP
     return () => cancelAnimationFrame(raf.current);
   }, []);
   const chars = text.split('');
-  const radius = 80;
+  const radius = 130;
   return (
-    <div style={{ width: 210, height: 210, position: 'relative', flexShrink: 0 }}>
-      <svg viewBox="0 0 180 180" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+    <div style={{ width: 340, height: 340, position: 'relative', flexShrink: 0 }}>
+      <svg viewBox="0 0 300 300" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
         {chars.map((ch, i) => {
           const a = (i / chars.length) * 360 + angle;
           const r = a * Math.PI / 180;
-          const x = 90 + radius * Math.cos(r);
-          const y = 90 + radius * Math.sin(r);
+          const x = 150 + radius * Math.cos(r);
+          const y = 150 + radius * Math.sin(r);
           return (
             <text key={i} x={x} y={y}
               textAnchor="middle" dominantBaseline="middle"
               transform={`rotate(${a + 90}, ${x}, ${y})`}
-              style={{ fontSize: 9, fontWeight: 700, fill: color, letterSpacing: 1, fontFamily: 'var(--sans)' }}>
+              style={{ fontSize: 11, fontWeight: 700, fill: color, letterSpacing: 1, fontFamily: 'var(--sans)' }}>
               {ch}
             </text>
           );
         })}
         {/* White circle background behind logo */}
-        <circle cx="90" cy="90" r="30" fill="rgba(255,255,255,0.08)" />
-        <circle cx="90" cy="90" r="30" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.4" />
-        <image href={logo} x="62" y="62" width="56" height="56" style={{ borderRadius: 28 }} clipPath="circle(28px at 28px 28px)" />
+        <circle cx="150" cy="150" r="52" fill="rgba(255,255,255,0.08)" />
+        <circle cx="150" cy="150" r="52" fill="none" stroke={color} strokeWidth="1" strokeOpacity="0.4" />
+        <image href={logo} x="110" y="110" width="80" height="80" style={{ borderRadius: 40 }} clipPath="circle(40px at 40px 40px)" />
       </svg>
     </div>
   );
@@ -458,9 +403,7 @@ function SectionPills({ active }) {
 ═══════════════════════════════════════════════════ */
 export default function Services() {
   const [activeSvc, setActiveSvc] = useState(0);
-  const [cursorColor, setCursorColor] = useState('#0057ff');
-
-  // Detect which section is in view based on scroll
+// Detect which section is in view based on scroll
   useEffect(() => {
     const sections = SVCS.map(s => document.getElementById(s.id));
     const onScroll = () => {
@@ -470,7 +413,6 @@ export default function Services() {
         const r = el.getBoundingClientRect();
         if (r.top < vh * 0.5 && r.bottom > vh * 0.5) {
           setActiveSvc(i);
-          setCursorColor(SVCS[i].color);
         }
       });
     };
@@ -481,10 +423,7 @@ export default function Services() {
   return (
     <div style={{ background: '#040b18', marginTop: '-68px' }}>
 
-      {/* Particle cursor trail */}
-      <CursorTrail color={cursorColor} />
-
-      {/* Floating section pills */}
+{/* Floating section pills */}
       <SectionPills active={activeSvc} />
 
       {/* ══════════════════════════════════════
@@ -514,7 +453,7 @@ export default function Services() {
             </div>
 
             <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(2.8rem,7vw,5.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.03, letterSpacing: '-0.035em', marginBottom: 24, animation: 'fadeUp 0.9s 0.1s ease both' }}>
-              Enterprise-Grade Dev.<br />
+              Enterprise Grade Dev.<br />
               <em style={{ fontStyle: 'italic', color: '#5aa8ff' }}>Startup Speed.</em>
             </h1>
             <p style={{ fontSize: 'clamp(0.9rem,1.6vw,1.08rem)', color: 'rgba(255,255,255,0.55)', lineHeight: 1.9, maxWidth: 520, marginBottom: 44, animation: 'fadeUp 0.9s 0.25s ease both' }}>
@@ -545,11 +484,6 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Scroll cue */}
-        <div style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', textAlign: 'center', opacity: 0.4, animation: 'fadeUp 1s 1s both' }}>
-          <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, #fff, transparent)', margin: '0 auto 8px' }} />
-          <span style={{ fontSize: '0.6rem', color: '#fff', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Scroll</span>
-        </div>
       </section>
 
       {/* ══════════════════════════════════════

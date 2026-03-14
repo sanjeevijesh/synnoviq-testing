@@ -139,9 +139,9 @@ function Counter({ end, suffix = '' }) {
    DATA
 ═══════════════════════════════════════════════════ */
 const SVCS = [
-  { id: 'fullstack', Icon: Globe,   color: '#0057ff', rgb: '0,87,255',   num: '01', title: 'Full Stack\nDevelopment',  desc: 'End-to-end web apps — from pixel-perfect frontends to scalable backends.', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&q=85', tags: ['React', 'Node.js', 'AWS', 'Next.js'] },
-  { id: 'gamedev',  Icon: Gamepad2, color: '#7c3aed', rgb: '124,58,237', num: '02', title: 'Game\nDevelopment',        desc: '2D & 3D games, mobile titles, and immersive multiplayer experiences.', img: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=900&q=85', tags: ['Unity', 'Unreal', 'C#', 'Photon'] },
-  { id: 'uiux',     Icon: Palette,  color: '#db2777', rgb: '219,39,119', num: '03', title: 'UI/UX\nDesign',            desc: 'Interfaces that users love — intuitive, beautiful, conversion-focused.', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=85', tags: ['Figma', 'Prototyping', 'Research', 'Design Systems'] },
+  { id: 'fullstack', Icon: Globe,   color: '#0057ff', rgb: '0,87,255',   num: '01', title: 'Full Stack\nDevelopment',  desc: 'End-to-end web apps — from pixel-perfect frontends to scalable backends.', img: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=900&q=85', tags: ['React', 'Node.js', 'AWS', 'Next.js'] },
+  { id: 'gamedev',  Icon: Gamepad2, color: '#7c3aed', rgb: '124,58,237', num: '02', title: 'Game\nDevelopment',        desc: '2D & 3D games, mobile titles, and immersive multiplayer experiences.', img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&q=85', tags: ['Unity', 'Unreal', 'C#', 'Photon'] },
+  { id: 'uiux',     Icon: Palette,  color: '#db2777', rgb: '219,39,119', num: '03', title: 'UI/UX\nDesign',            desc: 'Interfaces that users love — intuitive, beautiful, conversion-focused.', img: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=900&q=85', tags: ['Figma', 'Prototyping', 'Research', 'Design Systems'] },
 ];
 const STATS = [
   { end: 50,  suf: '+', label: 'Projects',     sub: 'Delivered globally'  },

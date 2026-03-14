@@ -51,22 +51,18 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <ul style={{ display:'flex', gap:2, listStyle:'none', margin:0, padding:0, flex:1, justifyContent:'center' }} className="hide-mobile">
-            {LINKS.map(({ to, l }) => (
-              <li key={to}>
-                <NavLink to={to} end={to==='/'}
-                  style={({ isActive }) => ({
-                    display:'block', padding:'6px 12px', borderRadius:6, textDecoration:'none',
-                    fontSize:'0.82rem', fontWeight: isActive ? 600 : 500,
-                    color: isActive ? '#ffffff' : '#c2d4eb',
-                    background: isActive ? 'rgba(255,255,255,0.12)' : 'transparent',
-                    transition:'all 0.18s',
-                  })}
-                  onMouseEnter={e => { e.currentTarget.style.color='#fff'; e.currentTarget.style.background='rgba(255,255,255,0.08)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.color='#c2d4eb'; e.currentTarget.style.background='transparent'; }}
-                >{l}</NavLink>
-              </li>
-            ))}
-          </ul>
+  {LINKS.map(({ to, l }) => (
+    <li key={to}>
+      <NavLink 
+        to={to} 
+        end={to === '/'}
+        className={({ isActive }) => isActive ? "desktop-link active" : "desktop-link"}
+      >
+        {l}
+      </NavLink>
+    </li>
+  ))}
+</ul>
 
           {/* Desktop CTA */}
           <div className="hide-mobile">
@@ -113,10 +109,37 @@ export default function Navbar() {
       </div>
 
       <style>{`
-        @keyframes drawerFadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
-        @media(max-width:767px)  { .hide-mobile  { display:none !important; } }
-        @media(min-width:768px)  { .hide-desktop { display:none !important; } }
-      `}</style>
+  /* Your existing drawer keyframes and media queries */
+  @keyframes drawerFadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+  @media(max-width:767px)  { .hide-mobile  { display:none !important; } }
+  @media(min-width:768px)  { .hide-desktop { display:none !important; } }
+
+  /* Add these new rules for your desktop links */
+  .desktop-link {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #c2d4eb;
+    background: transparent;
+    transition: all 0.18s;
+  }
+  
+  /* Hover effect (only applies when hovered) */
+  .desktop-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Active effect (stays locked in when on that page) */
+  .desktop-link.active {
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255,255,255,0.12);
+  }
+`}</style>
     </>
   );
 }

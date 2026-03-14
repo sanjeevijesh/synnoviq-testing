@@ -126,17 +126,16 @@ export default function Footer() {
               <h4 style={{ fontSize: '.62rem', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,.7)', marginBottom: 18 }}>{title}</h4>
               <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {links.map(({ l, to }) => (
-                  <li key={l}>
-                    <Link to={to}
-                      style={{ fontSize: 'clamp(.82rem,1.4vw,.86rem)', color: 'rgba(255,255,255,.42)', transition: 'color .18s', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}
-                      onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                      onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.42)'}
-                    >
-                      <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(0,87,255,.6)', display: 'inline-block', flexShrink: 0 }} />
-                      {l}
-                    </Link>
-                  </li>
-                ))}
+  <li key={l}>
+    <Link to={to}
+      style={{ fontSize: 'clamp(.82rem,1.4vw,.86rem)', color: 'rgba(255,255,255,.42)', transition: 'color .18s', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+      onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+      onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.42)'}
+    >
+      {l}
+    </Link>
+  </li>
+))}
               </ul>
             </div>
           ))}

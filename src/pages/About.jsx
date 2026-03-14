@@ -248,8 +248,8 @@ const VALUES = [
 const PHIL = [
   { n: '01', Icon: Target,  t: 'Understand First',     d: 'Great software starts with great understanding. We invest deeply in knowing your business, users, and goals before writing a single line of code.',  img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=85', col: '#0057ff', rgb: '0,87,255'     },
   { n: '02', Icon: Code2,   t: 'Agile Architecture',   d: 'Fast iteration on a solid foundation — shipping working software weekly while building for long-term scale with zero technical debt.',               img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&q=85', col: '#7c3aed', rgb: '124,58,237' },
-  { n: '03', Icon: Rocket,  t: 'Modern Technology',    d: 'AI-driven automation, cloud-native architectures, CI/CD pipelines, and advanced analytics power everything we build and ship.',                    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=85', col: '#db2777', rgb: '219,39,119' },
-  { n: '04', Icon: Shield,  t: 'Ship with Confidence', d: 'Build with purpose, test relentlessly, and ship with full confidence. Every release is production-ready and battle-tested from day one.',          img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=85', col: '#059669', rgb: '5,150,105'  },
+  { n: '03', Icon: Rocket,  t: 'Modern Technology',    d: 'AI-driven automation, cloud-native architectures, CI/CD pipelines, and advanced analytics power everything we build and ship.',                    img: 'https://plus.unsplash.com/premium_photo-1661885612035-58b85113fa89?q=80&w=1086&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', col: '#db2777', rgb: '219,39,119' },
+  { n: '04', Icon: Shield,  t: 'Ship with Confidence', d: 'Build with purpose, test relentlessly, and ship with full confidence. Every release is production-ready and battle-tested from day one.',          img: 'https://images.pexels.com/photos/38271/ipad-map-tablet-internet-38271.jpeg?_gl=1*zg4clp*_ga*MTgwODMzNjg2OS4xNzU0MzA0Njcx*_ga_8JE65Q40S6*czE3NzM0ODYyMzUkbzQkZzEkdDE3NzM0ODY1MjIkajU5JGwwJGgw', col: '#059669', rgb: '5,150,105'  },
 ];
 
 /* ────────────────────────────────────────────────────────
@@ -260,9 +260,9 @@ const PHIL = [
               scale slightly for depth
 ──────────────────────────────────────────────────────── */
 const HERO_IMGS = [
-  { src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85', label: 'Studio' },
+  { src: 'https://images.unsplash.com/photo-1625916271001-7c203327a0db?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label: 'Studio' },
   { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=85', label: 'People' },
-  { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=85', label: 'Work'   },
+  { src: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label: 'Work'   },
 ];
 const HERO_PILLS = [
   { icon: '', text: 'Fast delivery cycles' },
@@ -439,7 +439,7 @@ const WHO_DATA = [
     num: '02', tag: 'Craft',
     headline: ['We are', 'builders.'],
     body: 'From enterprise SaaS platforms to multiplayer game worlds — our engineers, designers, and QA specialists function as one unified team on every engagement.',
-    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=90',
+    img: 'https://plus.unsplash.com/premium_photo-1661724381829-6ecac947bfcf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     accent: '#7c3aed', rgb: '124,58,237',
     stat: { val: '15+', label: 'Technologies mastered' },
   },
@@ -682,7 +682,7 @@ function WhoWeAre() {
 function MissionVision() {
   const CARDS = [
     { label: 'Mission', Icon: Target, col: '#0057ff', rgb: '0,87,255', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=85', title: 'Engineering products that move the world forward.', body: "To empower businesses with high-quality, scalable software — delivering platforms and game experiences that solve real problems and drive measurable growth." },
-    { label: 'Vision', Icon: Eye, col: '#7c3aed', rgb: '124,58,237', img: 'https://images.unsplash.com/photo-1455849318743-b2233052fcff?w=900&q=85', title: 'A globally trusted technology partner.', body: "To become the go-to studio recognised for technical excellence, creative engineering, and a relentless commitment to digital products that make a lasting impact." },
+    { label: 'Vision', Icon: Eye, col: '#7c3aed', rgb: '124,58,237', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=85', title: 'A globally trusted technology partner.', body: "To become the go-to studio recognised for technical excellence, creative engineering, and a relentless commitment to digital products that make a lasting impact." },
   ];
   return (
     <section style={{ background: '#f2f4f8', padding: '100px 0', borderTop: '1px solid var(--rule)' }}>

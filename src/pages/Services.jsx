@@ -13,7 +13,7 @@ const SVCS = [
     title: 'Full Stack\nWeb Development',
     tagline: 'Enterprise-grade web apps, built end-to-end.',
     color: '#0057ff', colorRgb: '0,87,255', bg: '#000a1f',
-    img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=90',
+    img: 'https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     overview: 'We build complete web applications from the ground up — modern responsive frontends paired with powerful, secure, and scalable backends.',
     tags: ['React.js','Next.js','Node.js','PostgreSQL','AWS','Docker','GraphQL','TypeScript'],
     process: ['Discovery','Architecture','Development','QA & Testing','Deployment','Support'],
@@ -56,7 +56,7 @@ const SVCS = [
     title: 'UI/UX Design\n& Consulting',
     tagline: 'Interfaces users love. Products that convert.',
     color: '#db2777', colorRgb: '219,39,119', bg: '#1a0010',
-    img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&q=90',
+    img: 'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     overview: 'Outstanding technology deserves outstanding design. We create interfaces that users love — intuitive, accessible, and visually refined down to the pixel.',
     tags: ['Figma','Prototyping','Research','Wireframes','Design Systems','Accessibility','Branding','Audit'],
     included: [

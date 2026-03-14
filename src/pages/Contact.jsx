@@ -447,7 +447,7 @@ export default function Contact() {
           input, textarea, select { font-size: inherit !important; }
         }
 
-        button, a { min-height: 44px; }
+        
         input[type="checkbox"] { min-height: unset; min-width: unset; width: 18px !important; height: 18px !important; flex-shrink: 0; }
 
         input::placeholder, textarea::placeholder { color:rgba(255,255,255,.22); }

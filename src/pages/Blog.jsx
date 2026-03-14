@@ -39,7 +39,7 @@ These five patterns alone will save you from 80% of production incidents.`,
   },
   {
     slug:'unity-vs-unreal-2025',
-    img:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=900&q=85',
+    img:'https://deftsoft.com/wp-content/uploads/2024/07/featured-3.png',
     title:'Unity vs. Unreal in 2025',
     subtitle:'Which engine fits your next game project?',
     excerpt:"Both engines are industry-leading — but serve very different purposes. Here's how our game team approaches the engine decision for every new project we take on.",
@@ -78,7 +78,7 @@ By week 8, most interns are shipping independently. By the end of the program, s
   },
   {
     slug:'ux-conversion-mistakes',
-    img:'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=85',
+    img:'https://images.unsplash.com/photo-1618788372246-79faff0c3742?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title:'5 UX Mistakes Killing Conversions',
     subtitle:"Bad UX doesn't just frustrate — it costs real revenue.",
     excerpt:'Our design team walks through the five most common UX mistakes they see in client products and exactly how to fix each one without a full redesign.',
@@ -98,7 +98,7 @@ By week 8, most interns are shipping independently. By the end of the program, s
   },
   {
     slug:'cicd-pipelines',
-    img:'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=900&q=85',
+    img:'https://s7280.pcdn.co/wp-content/uploads/2021/04/ci-cd-pipeline-jenkins-configuration.png',
     title:'CI/CD Pipelines From Zero',
     subtitle:'Automated deployment without the headaches.',
     excerpt:"Continuous integration and deployment can feel overwhelming. Here's how Synnoviq sets up battle-tested pipelines that let teams ship confidently every day.",
@@ -118,7 +118,7 @@ The whole pipeline should run in under 8 minutes. If it takes longer, you'll sto
   },
   {
     slug:'game-studio-launch',
-    img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=900&q=85',
+    img:'https://cdn.prod.website-files.com/62d80bbbdf31d3a28076714f/63f365492e8890113ddb87da_ella-don-kCFXVisUqug-unsplash.jpg',
     title:'Synnoviq Launches Game Studio',
     subtitle:'A new chapter in our story as a tech company.',
     excerpt:"We're thrilled to announce the formal launch of our in-house game development studio — what it means for our clients and what we're building next.",
@@ -181,7 +181,7 @@ Our system now covers 12 products, 3 platforms (web, iOS, Android), and has been
   },
   {
     slug:'typescript-tips-2025',
-    img:'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=900&q=85',
+    img:'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*moJeTvW97yShLB7URRj5Kg.png',
     title:'TypeScript Tips That Will Change How You Code',
     subtitle:'Advanced patterns the docs never told you about.',
     excerpt:'After years of TypeScript in production, these patterns consistently surprise developers. Discriminated unions, template literal types, infer — here is how we actually use them.',
@@ -203,7 +203,7 @@ These five patterns will make your TypeScript more expressive, safer, and easier
   },
   {
     slug:'kubernetes-for-startups',
-    img:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=85',
+    img:'https://a.storyblok.com/f/153547/1024x768/c5b8195486/kqueen-open-source-multi-cloud-k8s-cluster-manager.jpg/m/2048x1536/filters:quality(70)',
     title:'Kubernetes for Startups',
     subtitle:"When you need it — and when you really don't.",
     excerpt:"Kubernetes is powerful, but it's not always the right tool. Here's a framework for deciding when to adopt it and how to do so without burning your team out.",

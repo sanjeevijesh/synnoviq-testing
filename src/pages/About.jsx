@@ -228,7 +228,7 @@ function Tilt({ children, style = {}, intensity = 12 }) {
 ──────────────────────────────────────────────────────── */
 const STATS = [
   { end: 50, suf: '+', label: 'Projects', sub: 'Delivered globally' },
-  { end: 3, suf: '+', label: 'Years', sub: 'Of excellence' },
+  { end: 1, suf: '+', label: 'Years', sub: 'Of excellence' },
   { end: 15, suf: '+', label: 'Technologies', sub: 'Mastered' },
   { end: 100, suf: '%', label: 'Satisfaction', sub: 'Every client' },
 ];

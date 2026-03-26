@@ -642,7 +642,7 @@ function WorkCard({ w, i, active, total }) {
         <div style={{ display:'flex', gap:7, flexWrap:'wrap', marginBottom:18 }}>
           {w.tech.map(t=><span key={t} style={{ padding:'4px 12px', background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.12)', borderRadius:999, fontSize:'0.68rem', color:'rgba(255,255,255,0.65)', fontWeight:500 }}>{t}</span>)}
         </div>
-        <div style={{ display:'flex', alignItems:'center', gap:6, fontSize:'0.78rem', fontWeight:700, color:w.color, opacity: hover ? 1 : 0, transform: hover ? 'translateX(0)' : 'translateX(-8px)', transition:'all 0.35s ease' }}>View project <ArrowRight size={13}/></div>
+        <div style={{ display:'flex', alignItems:'center', gap:6, fontSize:'0.78rem', fontWeight:700, color:w.color, opacity: hover ? 1 : 0, transform: hover ? 'translateX(0)' : 'translateX(-8px)', transition:'all 0.35s ease' }}></div>
       </div>
       <div style={{ position:'absolute', top:20, right:20, width:36, height:36, borderRadius:'50%', background:`rgba(${rgb},0.15)`, border:`1px solid rgba(${rgb},0.4)`, display:'flex', alignItems:'center', justifyContent:'center' }}>
         <div style={{ width:8, height:8, borderRadius:'50%', background:w.color }}/>

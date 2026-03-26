@@ -157,7 +157,7 @@ const PROCESS = [
   { n: '05', Icon: Shield,   t: 'Support',      d: 'Post-launch monitoring, performance tuning, and feature evolution as you scale.' },
 ];
 const WORK = [
-  { tag: 'Web App',    title: 'Enterprise SaaS Dashboard', tech: ['React', 'Node.js', 'AWS'],      img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80', color: '#0057ff' },
+  { tag: 'Web App',    title: 'Enterprise SaaS Dashboard', tech: ['React', 'Node.js', 'AWS'],      img: 'https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', color: '#0057ff' },
   { tag: 'Game',       title: 'Multiplayer Mobile RPG',    tech: ['Unity', 'C#', 'Photon'],        img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700&q=80', color: '#7c3aed' },
   { tag: 'UI/UX',      title: 'FinTech App Redesign',      tech: ['Figma', 'React Native'],        img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=700&q=80', color: '#db2777' },
   { tag: 'E-Commerce', title: 'Fashion Retail Platform',   tech: ['Next.js', 'MongoDB', 'Stripe'], img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80', color: '#059669' },
